@@ -1,5 +1,6 @@
 import argparse
 from transformers import AutoTokenizer, AutoModelForCausalLM
+
 from huggingface_hub import snapshot_download
 import torch
 
@@ -14,6 +15,7 @@ def load_model(model_name_or_path, download=False, cache_dir=None):
 
     tokenizer = AutoTokenizer.from_pretrained(path)
     model = AutoModelForCausalLM.from_pretrained(path)
+
     return tokenizer, model
 
 
@@ -31,6 +33,7 @@ def chat_loop(tokenizer, model, device="cpu"):
 
 
 def main():
+
     parser = argparse.ArgumentParser(description="Chat with a local or Hugging Face model")
     parser.add_argument("--model", default="gpt2", help="Path or model ID (default: gpt2)")
     parser.add_argument("--download", action="store_true", help="Download the model from the Hugging Face Hub")
@@ -39,6 +42,7 @@ def main():
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     tokenizer, model = load_model(args.model, download=args.download, cache_dir=args.cache_dir)
+
     chat_loop(tokenizer, model, device)
 
 
