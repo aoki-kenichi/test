@@ -38,8 +38,6 @@ To download a model directly from the Hub and start chatting:
 ```bash
 python chat_local_llm.py --model gpt2 --download
 
-python chat_local_llm.py --model-path /path/to/your/model
-
 ```
 
 Type `quit` or `exit` to end the chat session.
